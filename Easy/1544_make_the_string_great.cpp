@@ -1,17 +1,22 @@
 class Solution {
 public:
     string makeGood(string s) {
-        string ans;
-        for(int i = 0 ; i < s.size() ; i++)
-        {
-            ans.push_back(s[i]);
-            while(ans.size() && (ans.back()==s[i+1]+32 || 
-ans.back()==s[i+1]-32))
-            {
-                ans.pop_back();
-                i++;
+        string correct;
+        int k = s.length()/2;
+        
+        while( k > 0){
+            for(int i = 0; i < s.length(); i++){
+                if( s[i] == (s[i+1] + 32)){
+                    s.erase(s.begin()+i, s.begin()+i+2);
+                    continue;
+                }
+                if( s[i] == (s[i+1] - 32)){
+                    s.erase(s.begin()+i, s.begin()+i+2);
+                    continue;
+                }
             }
+            k--;
         }
-        return ans;
+        return s;
     }
 };
