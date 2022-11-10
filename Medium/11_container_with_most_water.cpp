@@ -1,29 +1,26 @@
 class Solution {
 public:
     int maxArea(vector<int>& height) {
+        int width;
+        int right = height.size()-1;
+        int left = 0;
         int sum = 0;
         int preSum = 0;
-        int size = height.size()-1;
-    
-        unordered_map<int, int>map;
-        vector<pair<int,int>>rait;
-        
-        for(int i = 0; i < height.size(); i++){
-            map[size-i] = height[i];
-        }
-        for( auto s: map){
-            rait.push_back(make_pair(s.second, s.first));
-        }
-        sort(rait.begin(), rait.end(), greater());
-
-        for(auto s: rait){
-            cout<<s.first<<" "<<s.second<<endl;
-        }
-        for(int k = 1; k < size; k++){
-            sum = rait[k].first * (rait[0].second - rait[k].second);
-            cout<<sum<<endl;
-            if(sum > preSum){
+        while(left < right){
+            width = left - right;
+            if( width < 0) width = width * -1;
+            sum = width * min(height[left], height[right]);
+            if( sum > preSum){
                 preSum = sum;
+            }
+            if( height[left] < height[right]){
+                left++;
+            }
+            else if( height[left] > height[right]){
+                right--;
+            }else{
+                left++;
+                right--;
             }
         }
         return preSum;
