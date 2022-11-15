@@ -37,5 +37,5 @@ public:
             set.insert(m);
         }
         return set.size();
-    }
+    } 
 };
