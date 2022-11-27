@@ -16,3 +16,24 @@ public:
         return sum;
     }
 };
+
+
+//runtime: 92%
+
+class Solution {
+public:
+    int countWords(vector<string>& words1, vector<string>& words2) {
+        map<string, int>map;
+        int sum = 0;
+        for(int i = 0; i < words1.size(); i++){
+            map[words1[i]]++;
+        }
+        for(int i = 0; i < words2.size(); i++){
+            if(map[words2[i]] < 2) map[words2[i]]--;
+        }
+        for(auto a: map){
+            if(a.second == 0) sum++;
+        }
+        return sum;
+    }
+};
