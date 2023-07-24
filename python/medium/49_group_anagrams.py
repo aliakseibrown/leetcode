@@ -16,3 +16,11 @@ class Solution:
         return lists
 
 
+#another one with less memory usage
+class Solution:
+    def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
+        dicSet = defaultdict(list)
+        for word in strs:
+            sortedWord = ''.join(sorted(word))
+            dicSet[sortedWord].append(word)
+        return list(dicSet.values())
