@@ -1,3 +1,27 @@
+second solution:
+
+class Solution:
+    def removeNthFromEnd(self, head: Optional[ListNode], n: int) -> 
+Optional[ListNode]:
+        dummy = ListNode(0, head)
+        left = dummy
+        right = head
+        #locate the right pointer
+        while n > 0 and right:
+            right = right.next
+            n-=1
+        #now the distance between left and right is n
+        while right:
+            left = left.next
+            right = right.next
+        #rewrite the left pointer to the next.next
+        left.next = left.next.next
+        return dummy.next
+
+
+
+
+
 # Definition for singly-linked list.
 # class ListNode:
 #     def __init__(self, val=0, next=None):
